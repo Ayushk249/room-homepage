@@ -33,39 +33,60 @@ const data = [
 
 const Showcase = () => {
 
-    const [items, setItems] = useState(data)
+    const [items] = useState(data)
+    const[imageIndex, setImageIndex] = useState(1)
+
+    function rightHandler(){
+        if(imageIndex === 3){
+            setImageIndex(1)
+        }else{
+            setImageIndex(imageIndex + 1) 
+        }
+    }
+
+    function leftHandler(){
+        if(imageIndex === 1){
+            setImageIndex(3)
+        }else{
+            setImageIndex(imageIndex - 1)
+    }
+    
+    }
+
   return (
     <>
         <section >
             {items.map((item,index) => {
                 return(
                     <>
+                    {imageIndex === index+1 &&
                     <article key={item.id} className='grid grid-cols-1 lg:grid-cols-2 lg:place-items-center'>
                     <div className='relative'>
                         <picture>
-                            <source media='(min-width:768px)' srcSet={item.image}/>
+                         <source media='(min-width:768px)' srcSet={item.image}/>
                             <img src={item.mobileImage} alt="" 
                             className='w-full'/>
                         </picture>
+                        
 
                     {/* Slider buttons */}
                         <ul className='flex absolute -bottom-1.5 -right-0 '>
                             <li><button className='bg-black hover:bg-neutral-600 transition-all duration-200'>
-                                <img src={left} alt="" className='p-5'/></button>
+                                <img src={left} alt="" className='p-5' onClick={leftHandler}/></button>
                             </li>
                             <li><button className='bg-black  hover:bg-neutral-600 transition-all duration-200'>
-                                <img src={right} alt="" className='p-5'/></button>
+                                <img src={right} alt="" className='p-5'onClick={rightHandler}/></button>
                             </li>
                         </ul>
                     </div>
 
                     <div className='p-8 lg:p-12'>
                         <h1 className='text-4xl lg:text-6xl font-semibold '>{item.title}</h1>
-                        <p className='text-zinc-400/[.80] mt-5 mb-8'>{item.description}</p>
+                        <p className='text-zinc-500/[.80] mt-5 mb-8'>{item.description}</p>
                         <button className='flex items-center gap-4 uppercase hover:opacity-80 font-semibold' style={{letterSpacing: "0.6rem"}}>Shop Now <img src= {arrow} alt="arrow" /></button>
                     </div>
                     
-                </article>
+                </article>}
                 </>
                 )         
             })}
@@ -75,4 +96,4 @@ const Showcase = () => {
   )
 }
 
-export default Showcase
+export default Showcase;

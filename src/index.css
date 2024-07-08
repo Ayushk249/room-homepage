@@ -13,3 +13,27 @@ body {
 }
 
 
+nav{
+  
+  position: absolute;
+  left: -100vw;
+  transition: all 0.5s ease-in-out;
+
+}
+
+nav.open{
+  left: 0;
+  @apply shadow-lg bg-white lg:shadow-none lg:bg-transparent;
+
+}
+
+
+@media (min-width: 1024px) {
+  nav {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+  
+}
+
